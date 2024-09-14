@@ -161,6 +161,7 @@ body {
   font-size: 16px;
   width: 70px;
   height: 30px;
+  cursor: pointer;
 }
 
 #daily-button {
@@ -176,10 +177,16 @@ body {
 }
 
 .selected-button {
-  background-color: rgb(240, 237, 237);
-  color: rgb(8, 76, 136);
-  border: 2px solid rgb(13, 39, 68);
+  border: 2px solid rgb(233, 233, 233);
+  background-color: rgba(211, 211, 211, 0.158);
+  color: white;
 }
 
 .unselected-button {
+  border: none;
+  background-color: rgb(233, 233, 233);
+}
+
+.unselected-button:hover {
+  background-color: rgb(211, 211, 211);
 }

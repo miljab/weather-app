@@ -34,6 +34,7 @@ async function getData(location) {
     console.log(data);
 
     buildCurrentWeatherInfo(data);
+    buildWeatherTiles(data);
   } catch (error) {
     const errorSpan = document.querySelector("#response-span");
     errorSpan.className = "error";
@@ -143,6 +144,43 @@ function buildCurrentWeatherInfo(data) {
   PoPDiv.appendChild(PoPValue);
   currentWeatherDiv.appendChild(PoPDiv);
 }
+
+function buildWeatherTiles(data) {
+  const dailyButton = document.querySelector("#daily-button");
+  const hourlyButton = document.querySelector("#hourly-button");
+
+  let textColor;
+  if (
+    data.currentConditions.datetime < data.currentConditions.sunset &&
+    data.currentConditions.datetime > data.currentConditions.sunrise
+  ) {
+    textColor = "rgb(8, 76, 136)";
+  } else {
+    textColor = "rgb(13, 39, 68)";
+  }
+
+  document.querySelector(".unselected-button").style.color = textColor;
+
+  dailyButton.addEventListener("click", () => {
+    dailyButton.className = "selected-button";
+    hourlyButton.className = "unselected-button";
+    dailyButton.style.color = "white";
+    hourlyButton.style.color = textColor;
+    dailyTiles(data);
+  });
+
+  hourlyButton.addEventListener("click", () => {
+    hourlyButton.className = "selected-button";
+    dailyButton.className = "unselected-button";
+    hourlyButton.style.color = "white";
+    dailyButton.style.color = textColor;
+    hourlyTiles(data);
+  });
+}
+
+function dailyTiles(data) {}
+
+function hourlyTiles(data) {}
 
 searchHandler();
 getData("warsaw");
