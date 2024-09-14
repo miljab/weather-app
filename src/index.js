@@ -182,6 +182,7 @@ function buildWeatherTiles(data) {
 
 function dailyTiles(data) {
   const tilesDiv = document.querySelector("#weather-tiles");
+  tilesDiv.classList.remove("hourly");
   tilesDiv.textContent = "";
 
   for (let i = 1; i < 7; i++) {
@@ -195,7 +196,7 @@ function dailyTiles(data) {
 
     const weatherIcon = document.createElement("img");
     weatherIcon.src = icons[`${data.days[i].icon}.svg`];
-    weatherIcon.className = "tile-weather-icon";
+    weatherIcon.className = "tile-weather-icon-daily";
     tileDiv.appendChild(weatherIcon);
 
     const minMaxDiv = document.createElement("div");
@@ -218,7 +219,36 @@ function dailyTiles(data) {
 }
 
 function hourlyTiles(data) {
-  console.log("hourly");
+  const tilesDiv = document.querySelector("#weather-tiles");
+  tilesDiv.classList.add("hourly");
+  tilesDiv.textContent = "";
+
+  const hourStart = parseInt(data.currentConditions.datetime.slice(0, 2));
+
+  for (let i = 0; i < 24; i++) {
+    const tileDiv = document.createElement("div");
+    tileDiv.className = "hourly-tile";
+
+    const d = hourStart + i > 23 ? 1 : 0;
+    const h = (hourStart + i) % 24;
+
+    const hourSpan = document.createElement("span");
+    hourSpan.className = "tile-hour-span";
+    hourSpan.textContent = data.days[d].hours[h].datetime.slice(0, 5);
+    tileDiv.appendChild(hourSpan);
+
+    const weatherIcon = document.createElement("img");
+    weatherIcon.src = icons[`${data.days[d].hours[h].icon}.svg`];
+    weatherIcon.className = "tile-weather-icon-hourly";
+    tileDiv.appendChild(weatherIcon);
+
+    const temp = document.createElement("span");
+    temp.className = "tile-hourly-temp";
+    temp.textContent = `${data.days[d].hours[h].temp}\xB0C`;
+    tileDiv.appendChild(temp);
+
+    tilesDiv.appendChild(tileDiv);
+  }
 }
 
 searchHandler();
