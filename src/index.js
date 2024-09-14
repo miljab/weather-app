@@ -198,15 +198,20 @@ function dailyTiles(data) {
     weatherIcon.className = "tile-weather-icon";
     tileDiv.appendChild(weatherIcon);
 
+    const minMaxDiv = document.createElement("div");
+    minMaxDiv.className = "tile-min-max-div";
+
     const minTemp = document.createElement("span");
     minTemp.className = "tile-min-temp";
-    minTemp.textContent = data.days[i].tempmin;
-    tileDiv.appendChild(minTemp);
+    minTemp.textContent = `${data.days[i].tempmin}\xB0C`;
+    minMaxDiv.appendChild(minTemp);
 
     const maxTemp = document.createElement("span");
     maxTemp.className = "tile-max-temp";
-    maxTemp.textContent = data.days[i].tempmax;
-    tileDiv.appendChild(maxTemp);
+    maxTemp.textContent = `${data.days[i].tempmax}\xB0C`;
+    minMaxDiv.appendChild(maxTemp);
+
+    tileDiv.appendChild(minMaxDiv);
 
     tilesDiv.appendChild(tileDiv);
   }

@@ -103,6 +103,7 @@ body {
   grid-row: 2/3;
   margin: auto;
   width: 100px;
+  height: 100px;
 }
 
 .current-temp-span {
@@ -149,11 +150,13 @@ body {
   justify-content: start;
   margin: auto;
   height: 100%;
+  font-weight: 300;
 }
 
 #weather-buttons {
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 }
 
 #hourly-button,
@@ -199,29 +202,42 @@ body {
 
 .tile-weather-icon {
   width: 64px;
+  height: 64px;
 }
 
 .daily-tile {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  border: 2px solid rgba(255, 255, 255, 0.685);
+  background-color: rgba(211, 211, 211, 0.158);
+  border-radius: 20px;
+  width: 180px;
+  height: 100px;
 }
 
 .tile-date-span {
   grid-column: 1/2;
   grid-row: 1/2;
+  font-size: 14px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tile-weather-icon {
   grid-column: 1/2;
   grid-row: 2/3;
+  margin: auto;
 }
 
-.tile-min-temp {
+.tile-min-max-div {
   grid-column: 2/3;
-  grid-row: 1/2;
-}
-
-.tile-max-temp {
-  grid-column: 2/3;
-  grid-row: 2/3;
+  grid-row: 1/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-weight: 300;
 }
