@@ -252,4 +252,3 @@ function hourlyTiles(data) {
 }
 
 searchHandler();
-getData("warsaw");
