@@ -9,7 +9,7 @@ function importAll(r) {
 }
 
 const icons = importAll(
-  require.context("./icons", false, /\.(png|jpe?g|svg)$/),
+  require.context("./icons_svg", false, /\.(png|jpe?g|svg)$/),
 );
 
 async function getData(location) {
@@ -82,7 +82,7 @@ function buildCurrentWeatherInfo(data) {
   currentWeatherDiv.appendChild(currentDate);
 
   const currentIcon = document.createElement("img");
-  currentIcon.src = icons[`${data.currentConditions.icon}.png`];
+  currentIcon.src = icons[`${data.currentConditions.icon}.svg`];
   currentIcon.className = "current-icon";
   currentWeatherDiv.appendChild(currentIcon);
 
