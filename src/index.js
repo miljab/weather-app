@@ -15,8 +15,10 @@ const icons = importAll(
 async function getData(location) {
   try {
     location = location.replace(/\s/g, "%20");
+    const startDate = new Date();
+    const endDate = new Date(new Date().setDate(new Date().getDate() + 6));
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/2024-09-13/2024-09-19?unitGroup=metric&include=days%2Ccurrent%2Chours&key=666P6XP95XJS8NXGCEGYPERCJ&contentType=json`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${startDate.toJSON().slice(0, 10)}/${endDate.toJSON().slice(0, 10)}?unitGroup=metric&include=days%2Ccurrent%2Chours&key=666P6XP95XJS8NXGCEGYPERCJ&contentType=json`,
       { mode: "cors" },
     );
 
