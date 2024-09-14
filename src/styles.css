@@ -190,3 +190,38 @@ body {
 .unselected-button:hover {
   background-color: rgb(211, 211, 211);
 }
+
+#weather-tiles {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tile-weather-icon {
+  width: 64px;
+}
+
+.daily-tile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tile-date-span {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.tile-weather-icon {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.tile-min-temp {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.tile-max-temp {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}

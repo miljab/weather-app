@@ -176,11 +176,45 @@ function buildWeatherTiles(data) {
     dailyButton.style.color = textColor;
     hourlyTiles(data);
   });
+
+  document.querySelector(".selected-button").click();
 }
 
-function dailyTiles(data) {}
+function dailyTiles(data) {
+  const tilesDiv = document.querySelector("#weather-tiles");
+  tilesDiv.textContent = "";
 
-function hourlyTiles(data) {}
+  for (let i = 1; i < 7; i++) {
+    const tileDiv = document.createElement("div");
+    tileDiv.className = "daily-tile";
+
+    const dateSpan = document.createElement("span");
+    dateSpan.className = "tile-date-span";
+    dateSpan.textContent = data.days[i].datetime;
+    tileDiv.appendChild(dateSpan);
+
+    const weatherIcon = document.createElement("img");
+    weatherIcon.src = icons[`${data.days[i].icon}.svg`];
+    weatherIcon.className = "tile-weather-icon";
+    tileDiv.appendChild(weatherIcon);
+
+    const minTemp = document.createElement("span");
+    minTemp.className = "tile-min-temp";
+    minTemp.textContent = data.days[i].tempmin;
+    tileDiv.appendChild(minTemp);
+
+    const maxTemp = document.createElement("span");
+    maxTemp.className = "tile-max-temp";
+    maxTemp.textContent = data.days[i].tempmax;
+    tileDiv.appendChild(maxTemp);
+
+    tilesDiv.appendChild(tileDiv);
+  }
+}
+
+function hourlyTiles(data) {
+  console.log("hourly");
+}
 
 searchHandler();
 getData("warsaw");
